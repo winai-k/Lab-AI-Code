@@ -1,0 +1,48 @@
+services:
+    api-db:
+        build:
+          context: .
+          dockerfile: Dockerfile-compose-db
+        image: api-db:latest
+        environment:
+            PYTHONUNBUFFERED: 1
+        command: fastapi run --reload
+        ports:
+            - 5001:8000
+        restart: always
+        networks:
+          - week7-networks
+        volumes:
+          - ./app_api:/usr/src/app
+
+        deploy:
+          resources:
+            limits:
+              cpus: '1.0'      
+              memory: 512M      
+            reservations:
+              cpus: '0.5'   
+              memory: 256M 
+
+    mongodb:
+      image: mongo
+      ports:
+        - 27017:27017
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: admin
+        MONGO_INITDB_ROOT_PASSWORD: Tzf4GKgIFAc
+      volumes:
+        - ./data:/data/db
+      restart: always
+      networks:
+        - week7-networks
+
+networks:
+    week7-networks:
+        name: "week7-networks"
+
+
+# build and run this docker compose
+  # docker compose -f docker-compose-db.yml build
+  # docker compose -f docker-compose-db.yml up -d
+  # docker compose -f docker-compose-db.yml logs -f --tail 10

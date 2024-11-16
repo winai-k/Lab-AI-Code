@@ -1,0 +1,28 @@
+services:
+    ait-week7:
+        build:
+          context: .
+          dockerfile: Dockerfile-compose
+        # image: ait-week7:latest
+        # using prebuild image
+        image: winai-k/ait-week7:latest
+        environment:
+            PYTHONUNBUFFERED: 1
+        command: fastapi run --reload
+        ports:
+            - 5000:8000
+        restart: always
+        volumes:
+          - ./app:/usr/src/app
+      # deploy:
+      #   resources:
+      #       reservations:
+      #         devices:
+      #           - driver: nvidia
+      #             count: "all"
+      #             capabilities: [gpu]
+
+# build and run this docker compose
+    # docker compose -f docker-compose.yml build
+    # docker compose -f docker-compose.yml up -d
+    # docker compose -f docker-compose.yml logs -f --tail 10

@@ -1,0 +1,217 @@
+#print("Hello Wold")
+
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.common.exceptions import SessionNotCreatedException
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
+
+import requests
+import pyautogui
+import numpy as np
+import time
+import os
+
+src_dir = "C:/Users/66646/Pictures/Src-Folder"       #source folder
+dst_dir = "C:/Users/66646/Pictures/Dst-Folder"       #destination folder
+
+url = "http://www.google.co.th"
+timeout = 5
+
+url_vom = "https://10.3.0.20:14161/vom/login"
+url_ava = "https://10.3.0.20:14161/vom/hadr"
+url_ops = "https://10.3.0.19/opscenter/login.spring"
+url_zbx = "http://172.16.15.200/zabbix/index.php"
+url_ntx = "https://cloud.pea.co.th:9440/console/#login"
+
+vomUser = 'root'
+vomPassword = '1t1dc@P3A3'
+opsUser = 'winai'
+opsPassword = 'Win@1.moo'
+a_zbxUser = 'user-a'
+a_zbxPassword = 'P@ssw0rd@2021'
+w_zbxUser = 'user-w'
+w_zbxPassword = 'P@ssw0rd@2021'
+f_zbxUser = 'user-f'
+f_zbxPassword = 'P@ssw0rd@2021'
+l_zbxUser = 'user-l'
+l_zbxPassword = 'P@ssw0rd@2021'
+ntxUser = 'monitor'
+ntxPassword = 'P@ssw0rd@2021'
+C_zbxPassword = 'P@ssw0rd'
+C_zbxUser = 'user-c'
+M_zbxPassword = 'P@ssw0rd'
+M_zbxUser = 'user-m'
+
+src_dir = "C:/Users/66646/Pictures/Src-Folder"       #source folder
+
+options = Options()
+options.add_experimental_option('useAutomationExtension', False)
+
+#ลบ file ทั้งหมดจาก (folder ต้นทาง)
+def removeFile():
+    for lfile in os.listdir(src_dir):                   #list file in directory by 1
+        os.remove(os.path.join(src_dir, lfile))         #remove file in (directory joined width list file name)
+
+#login web site
+def openBrowser(webui = " "):
+    driver = webdriver.Chrome()
+    #startDriver()
+    if webui == "zbx-a":
+        driver.get(url_zbx)
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(3)
+        driver.find_element_by_id("name").send_keys(a_zbxUser)
+        driver.find_element_by_id("password").send_keys(a_zbxPassword)
+        driver.find_element_by_id("enter").click()
+        time.sleep(5)
+        snapshot("a")
+    elif webui == "zbx-w":
+        driver.get(url_zbx)
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(3)
+        driver.find_element_by_id("name").send_keys(w_zbxUser)
+        driver.find_element_by_id("password").send_keys(w_zbxPassword)
+        driver.find_element_by_id("enter").click()
+        time.sleep(5)
+        snapshot("w")
+    elif webui == "zbx-l":
+        driver.get(url_zbx)
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(3)
+        driver.find_element_by_id("name").send_keys(l_zbxUser)
+        driver.find_element_by_id("password").send_keys(l_zbxPassword)
+        driver.find_element_by_id("enter").click()
+        time.sleep(5)
+        snapshot("l")
+    elif webui == "zbx-f":
+        driver.get(url_zbx)
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(3)
+        driver.find_element_by_id("name").send_keys(f_zbxUser)
+        driver.find_element_by_id("password").send_keys(f_zbxPassword)
+        driver.find_element_by_id("enter").click()
+        time.sleep(5)
+        snapshot("f")
+    elif webui == "zbx-c":
+        driver.get(url_zbx)
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(3)
+        driver.find_element_by_id("name").send_keys(C_zbxUser)
+        driver.find_element_by_id("password").send_keys(C_zbxPassword)
+        driver.find_element_by_id("enter").click()
+        time.sleep(5)
+        snapshot("c")
+    elif webui == "zbx-m":
+        driver.get(url_zbx)
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(3)
+        driver.find_element_by_id("name").send_keys(M_zbxUser)
+        driver.find_element_by_id("password").send_keys(M_zbxPassword)
+        driver.find_element_by_id("enter").click()
+        time.sleep(5)
+        snapshot("m")
+    elif webui == "vom":
+        driver.get(url_vom)
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(3)
+        driver.find_element_by_id("details-button").click()
+        time.sleep(2)
+        driver.find_element_by_id("proceed-link").click()
+        time.sleep(3)
+        driver.find_element_by_id("txt_UsernameLogin_ID-inputEl").send_keys(vomUser)
+        driver.find_element_by_id("pwd_PasswordLogin_ID-inputEl").send_keys(vomPassword)
+        driver.find_element_by_id("btn_login_ID-btnInnerEl").click()
+        time.sleep(5)
+        driver.get(url_ava)
+        time.sleep(5)
+        driver.find_element_by_id("tab-1161-btnEl").click()
+        time.sleep(3)
+        snapshot("v")
+    elif webui == "ops":
+        driver.get(url_ops)
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(3)
+        driver.find_element_by_id("details-button").click()
+        time.sleep(2)
+        driver.find_element_by_id("proceed-link").click()
+        time.sleep(3)
+        driver.find_element_by_id("username").send_keys(opsUser)
+        driver.find_element_by_id("password").send_keys(opsPassword)
+        driver.find_element_by_id("loginButton").click()
+        time.sleep(5)
+        driver.find_element_by_id("monitor.jobsTabsubtabLink").click()
+        time.sleep(3)
+        driver.find_element_by_id("splitviewButtonLink2").click()
+        time.sleep(3)
+        snapshot("o")
+    elif webui == "ntx":
+        driver.get(url_ntx)
+        actions = ActionChains(driver) 
+        driver.maximize_window()
+        driver.execute_script("document.body.style.zoom='100%'")
+        time.sleep(5)
+        driver.find_element_by_id("loginWithLocal").click() # Local login
+        time.sleep(3)
+        driver.find_element_by_id("inputUsername").send_keys(ntxUser)
+        driver.find_element_by_id("inputPassword").send_keys(ntxPassword)
+        driver.find_element_by_id("inputPassword").send_keys(Keys.ENTER)
+        time.sleep(8)
+        driver.find_element_by_xpath("/html/body/div[9]/div/div[2]/div/div[1]/div[2]/div/div[2]/div/div[2]/button").click()
+        time.sleep(3)
+        actions.send_keys(Keys.ENTER)
+        time.sleep(3)
+        driver.find_element_by_xpath("/html/body/div[6]/div/div/div[3]/div/button[2]").click()
+        time.sleep(6)
+        
+        snapshot("n")
+    
+    time.sleep(5)
+    driver.close()
+
+def snapshot(picchk=" "):
+    imagesnap = pyautogui.screenshot()
+    if picchk == "a":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-A.jpg')
+    elif picchk == "w":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-W.jpg')
+    elif picchk == "l":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-L.jpg')
+    elif picchk == "f":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-F.jpg')
+    elif picchk == "c":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-C.jpg')
+    elif picchk == "m":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-M.jpg')
+    elif picchk == "v":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-V.jpg')
+    elif picchk == "o":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-O.jpg')
+    elif picchk == "n":
+        imagesnap.save(r'C:/Users/66646/Pictures/Src-Folder/PIC-ZBX-N.jpg')
+
+def main():
+    openBrowser("vom")
+    openBrowser("ops")
+    openBrowser("zbx-a")
+    openBrowser("zbx-w")
+    openBrowser("zbx-l")
+    openBrowser("zbx-f")
+    openBrowser("zbx-c")
+    openBrowser("zbx-m")
+    openBrowser("ntx")
+
+# Call function .
+try:
+    request = requests.get(url, timeout=timeout)
+    main()
+except (requests.ConnectionError, requests.Timeout) as exception:
+	removeFile()

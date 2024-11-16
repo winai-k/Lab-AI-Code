@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 5
+names: ['airpane', 'face', 'helmet', 'human', 'robot']
+
+roboflow:
+  workspace: -pjj2n
+  project: test-object-detection-mufmz
+  version: 2
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/-pjj2n/test-object-detection-mufmz/dataset/2

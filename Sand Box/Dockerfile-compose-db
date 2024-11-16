@@ -1,0 +1,14 @@
+# Use Python 3.12 as the base image
+FROM python:3.12-slim
+
+# Set the working directory
+WORKDIR /usr/src/app
+
+# Copy the requirements file to docker image
+COPY requirements-db.txt ./
+
+RUN apt-get update \
+&& pip3 install -r requirements-db.txt --no-cache-dir
+
+# Copy the application code to the image
+COPY app_api/ ./

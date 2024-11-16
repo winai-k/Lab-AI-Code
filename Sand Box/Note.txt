@@ -1,0 +1,5 @@
+Tools.
+https://code.visualstudio.com/download
+https://www.python.org/downloads/
+https://www.anaconda.com/download
+https://colab.research.google.com/drive/1UuyBGZZzAvbYCyU0Satwx9MR586rdiF8
