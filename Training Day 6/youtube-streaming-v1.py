@@ -2,13 +2,15 @@ import os
 import cv2
 import subprocess
 import yt_dlp
+import time
 
 # The YouTube live stream URL
-youtube_url = "https://www.youtube.com/watch?v=7EEy1OEmGjc" #"https://www.youtube.com/watch?v=yJYGeP1vEhs" # Moo Deng Live
+# youtube_url = "https://www.youtube.com/watch?v=7EEy1OEmGjc" #"https://www.youtube.com/watch?v=yJYGeP1vEhs" # Moo Deng Live
 # youtube_url = "https://www.youtube.com/watch?v=gFRtAAmiFbE&list=PLxtg5zfgORZr8KB1VglBvI6czMJpPL-rx" # Kabukicho Live Channel II
+youtube_url = "https://www.youtube.com/watch?v=lsxYH2XQQCg&list=PLxtg5zfgORZr8KB1VglBvI6czMJpPL-rx&index=3&ab_channel=%E6%B7%A1%E8%B7%AF%E3%82%B6%E3%83%AB" # 淡路島モンキーセンター Live Channel
 
 # + Create directory to save frames
-save_dir = "frames"
+save_dir = r"C:\Users\winai\All Data\My AI Data\Training Day 6\Data\Train image"
 os.makedirs(save_dir, exist_ok=True)
 
 # Function to get the direct stream URL
@@ -34,6 +36,8 @@ if not cap.isOpened():
     exit()
 
 frame_count = 0
+last_save_time = time.time()  # เพิ่มตัวแปรเก็บเวลาบันทึกล่าสุด
+save_interval = 20  # ระยะเวลาในการบันทึกภาพ (วินาที)
 
 # Display the live stream
 while True:
@@ -44,10 +48,13 @@ while True:
         print("Failed to grab frame.")
         break
     
-    # + Save each frame to the folder
-    frame_filename = os.path.join(save_dir, f"frame_{frame_count}.jpg")
-    cv2.imwrite(frame_filename, frame)
-    frame_count += 1
+    current_time = time.time()
+    if current_time - last_save_time >= save_interval:
+        frame_filename = os.path.join(save_dir, f"f_{frame_count}.jpg")
+        cv2.imwrite(frame_filename, frame)
+        print(f"บันทึกภาพที่ {frame_count} เวลา: {time.strftime('%H:%M:%S')}")
+        frame_count += 1
+        last_save_time = current_time  # อัพเดทเวลาบันทึกล่าสุด
 
     cv2.imshow('YouTube Live Feed', frame)
     
