@@ -6,8 +6,8 @@ import time
 
 # The YouTube live stream URL
 # youtube_url = "https://www.youtube.com/watch?v=7EEy1OEmGjc" #"https://www.youtube.com/watch?v=yJYGeP1vEhs" # Moo Deng Live
-youtube_url = "https://www.youtube.com/watch?v=gFRtAAmiFbE&list=PLxtg5zfgORZr8KB1VglBvI6czMJpPL-rx" # Kabukicho Live Channel II
-# youtube_url = "https://youtu.be/lsxYH2XQQCg?list=PLxtg5zfgORZr8KB1VglBvI6czMJpPL-rx" # 淡路島モンキーセンター Live Channel
+# youtube_url = "https://www.youtube.com/watch?v=gFRtAAmiFbE&list=PLxtg5zfgORZr8KB1VglBvI6czMJpPL-rx" # Kabukicho Live Channel II
+youtube_url = "https://youtu.be/lsxYH2XQQCg?list=PLxtg5zfgORZr8KB1VglBvI6czMJpPL-rx" # 淡路島モンキーセンター Live Channel
 
 # + Create directory to save frames
 save_dir = r"C:\Users\winai\All Data\My AI Data\Training Day 6\Data\Train image"
