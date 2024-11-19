@@ -3,10 +3,10 @@ import cv2
 import yt_dlp
 
 # The YouTube live stream URL
-youtube_url = "https://www.youtube.com/watch?v=7EEy1OEmGjc" # Moo Deng Live
+youtube_url = "https://youtu.be/lsxYH2XQQCg?list=PLxtg5zfgORZr8KB1VglBvI6czMJpPL-rx" # 淡路島モンキーセンター Live Channel
 
 # Load the YOLOv8 model (adjust the path to your trained model)
-model = YOLO('../Training Day 6/runs/yolov8_experiment/weights/best.pt')  # Replace 'best.pt' with the path to your trained model
+model = YOLO(r'C:\Users\winai\All Data\My AI Data\Training Day 6\Data\monkey-in-a-zoo\runs\yolov8_experiment\weights\best.pt')  # Replace 'best.pt' with the path to your trained model
 
 # Function to get the direct stream URL
 def get_youtube_stream_url(youtube_url):
@@ -28,8 +28,9 @@ cap = cv2.VideoCapture(stream_url)
 
 # เพิ่ม dictionary สำหรับแมป class number เป็น class name
 class_names = {
-    0: 'Moo Deng',  # ใส่ชื่อ class ตามที่คุณเทรนโมเดลไว้
-    1: 'Mom',
+    0: 'dear',  # ใส่ชื่อ class ตามที่คุณเทรนโมเดลไว้
+    1: 'monkey',
+    2: 'person',
     # เพิ่ม class อื่นๆ ตามที่คุณมี
 }
 
@@ -39,6 +40,8 @@ if not cap.isOpened():
 
 while True:
     ret, frame = cap.read()
+    frame = cv2.resize(frame,(1200,800))
+
     if not ret:
         print("Failed to grab frame.")
         break
