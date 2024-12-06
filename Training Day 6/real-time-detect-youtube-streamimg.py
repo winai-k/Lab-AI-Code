@@ -6,7 +6,7 @@ import yt_dlp
 youtube_url = "https://youtu.be/lsxYH2XQQCg?list=PLxtg5zfgORZr8KB1VglBvI6czMJpPL-rx" # 淡路島モンキーセンター Live Channel
 
 # Load the YOLOv8 model (adjust the path to your trained model)
-model = YOLO(r'C:\Users\winai\All Data\My AI Data\Training Day 6\Data\monkey-in-a-zoo\runs\yolov8_experiment\weights\best.pt')  # Replace 'best.pt' with the path to your trained model
+model = YOLO(r'C:\Users\winai\All Data\My AI Data\Training Day 6\Data\monkey-in-a-zoo.v2\runs\yolov8_experiment\weights\best.pt')  # Replace 'best.pt' with the path to your trained model
 
 # Function to get the direct stream URL
 def get_youtube_stream_url(youtube_url):
